@@ -24,17 +24,19 @@
        var upkeyPressed = false;
        var downkeyPressed = false;
        
+       
+       
         function mainloop(){//mainloop were you want stuff on screen.
             
             colorRect(0,0,canvas.width,canvas.height,'black'); // background that youll be palying on
             
-            colorRect(playerXpos,playerYpos,PLAYER_SIZE,PLAYER_SIZE,'red');//the charcter youll be playing in the game
+            colorRect(playerXpos,playerYpos,PlAYER_SIZE,PlAYER_SIZE,'red');//the charcter youll be playing in the game
             
-            if(startingPos){
-                startPos();
-                starting = false;// where you start
-            }// end func
+            
         } // end func
+       
+       
+       
        
        function colorRect(x,y,w,h,c){
            canvasContext.fillStyle = c;
