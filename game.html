@@ -1,96 +1,91 @@
 <!doctype html>
+
 <body>
-   <canvas id="gameCanvas" width="600" height="600"> 
-   </canvas>
-   <script>
-    var canvas, canvasContext;
-       
-       window.onload = function() {
-           canvas = document.getElementById('gameCanvas');
-           canvasContext = canvas.getContext('2d');
-           
-           document.addEventListener('keydown', keyPressed);
-           document.addEventListener('keyup', keyReleased)
-                  
-           setInterval(mainloop, 1000 / 50);
-           
-       }
-       
-       var playerXpos = 290;
-       var playerYpos = 500;
-       const PlAYER_SIZE = 20;
-       var playerXspeed = 5;
-       var playerYspeed = 5;
-       
-       var leftkeyPressed = false;
-       var rightkeyPressed = false; 
-       var upkeyPressed = false;
-       var downkeyPressed = false;
-       
-       const LEFT_KEY = 65;
-       const RIGHT_KEY = 68;
-       
-       var startingPos = true;
-       
-        function mainloop(){//mainloop were you want stuff on screen.
-            
-            colorRect(0,0,canvas.width,canvas.height,'black'); // background that youll be palying on
-            
-            colorRect(playerXpos,playerYpos,PlAYER_SIZE,PlAYER_SIZE,'red');//the charcter youll be playing in the game
-            
-            if(startingPos){
+    <canvas id="gameCanvas" width="600" height="600">
+    </canvas>
+    <script>
+        var canvas, canvasContext;
+
+        window.onload = function() {
+            canvas = document.getElementById('gameCanvas');
+            canvasContext = canvas.getContext('2d');
+
+            document.addEventListener('keydown', keyPressed);
+            document.addEventListener('keyup', keyReleased)
+
+            setInterval(mainloop, 1000 / 50);
+
+        }
+
+        var playerXpos = 290;
+        var playerYpos = 500;
+        const PlAYER_SIZE = 20;
+        var playerXspeed = 5;
+        var playerYspeed = 5;
+
+        var leftkeyPressed = false;
+        var rightkeyPressed = false;
+        var upkeyPressed = false;
+        var downkeyPressed = false;
+
+        const LEFT_KEY = 65;
+        const RIGHT_KEY = 68;
+
+        var startingPos = true;
+
+        function mainloop() { //mainloop were you want stuff on screen.
+
+            colorRect(0, 0, canvas.width, canvas.height, 'black'); // background that youll be palying on
+
+            colorRect(playerXpos, playerYpos, PlAYER_SIZE, PlAYER_SIZE, 'red'); //the charcter youll be playing in the game
+
+            if (startingPos) {
                 startPos();
                 console.log('here')
-                starting = false;
+                startingPos = false;
             }
             playerMove();
         } // end func
-       
-        function keyPressed(evt){
-            
-            if (evt.keyCode == LEFT_KEY){
+
+        function keyPressed(evt) {
+
+            if (evt.keyCode == LEFT_KEY) {
                 leftkeyPressed = true;
             }
-            if (evt.keyCode == RIGHT_KEY){
+            if (evt.keyCode == RIGHT_KEY) {
                 rightkeyPressed = true;
             }
-        }//end func
-       
-       function keyReleased(evt){
-            if (evt.keyCode == LEFT_KEY){
+        } //end func
+
+        function keyReleased(evt) {
+            if (evt.keyCode == LEFT_KEY) {
                 leftkeyPressed = false;
             }
-            if (evt.keyCode == RIGHT_KEY){
+            if (evt.keyCode == RIGHT_KEY) {
                 rightkeyPressed = false;
             }
-        }//end func
-       
-       function playerMove(){
-           if(rightkeyPressed && playerXpos + PLAYER_SIZE < canvas.width){// rightkeypressed 
-             playerXpos += playerXspeed;
-                
-            if(leftkeyPressed){// leftkeyPressed 
-             playerXpos -= playerXspeed;
-                if(playerXpos < 0 - PLAYER_SIZE){
-                    playerXpos = canvas.width - PLAYER_SIZE;
-            }// end func
-                }
-                
-            }// end func
-       }
-       
-       
-       function startPos(){
-           playerXpos = canvas.width / 2 - PlAYER_SIZE / 2;
-           playerYpos = canvas.height * 0.8;
-       }
-       
-       function colorRect(x,y,w,h,c){
-           canvasContext.fillStyle = c;
-           canvasContext.fillRect(x,y,w,h);
-       }
-       
-       
-       
+        } //end func
+
+        function playerMove() {
+            if (rightkeyPressed) { // rightkeypressed 
+                playerXpos += playerXspeed;
+            }
+            if (leftkeyPressed) { // leftkeyPressed 
+                playerXpos -= playerXspeed;
+            }
+
+        } // end func
+
+
+        function startPos() {
+            playerXpos = canvas.width / 2 - PlAYER_SIZE / 2;
+            playerYpos = canvas.height * 0.8;
+        }
+
+        function colorRect(x, y, w, h, c) {
+            canvasContext.fillStyle = c;
+            canvasContext.fillRect(x, y, w, h);
+        }
+
     </script>
 </body>
