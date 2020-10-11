@@ -11,7 +11,8 @@
             canvasContext = canvas.getContext('2d');
 
             document.addEventListener('keydown', keyPressed);
-            document.addEventListener('keyup', keyReleased)
+            document.addEventListener('keyup', keyReleased);
+            
 
             setInterval(mainloop, 1000 / 50);
 
@@ -22,16 +23,20 @@
         const PlAYER_SIZE = 20;
         var playerXspeed = 5;
         var playerYspeed = 5;
-
-        var leftkeyPressed = false;
-        var rightkeyPressed = false;
-        var upkeyPressed = false;
-        var downkeyPressed = false;
+        
+        var enemy1Xpos = 1;
+        var enemy1Ypos = 1;
+        const ENEMY1_SIZE = 20;
+        var enemy1Xspeed= 5;
+        var enemy1Yspeed= 5;
 
         const LEFT_KEY = 65;
         const RIGHT_KEY = 68;
 
-        var startingPos = true;
+        var leftkeyPressed = false;
+        var rightkeyPressed = false;
+        
+        
 
         function mainloop() { //mainloop were you want stuff on screen.
 
@@ -65,8 +70,12 @@
                 rightkeyPressed = false;
             }
         } //end func
+        
+        function enemy = {
+            
+        }
 
-        function playerMove() {
+        function playerMove() {//player 
             if (rightkeyPressed) { // rightkeypressed 
                 playerXpos += playerXspeed;
             }
