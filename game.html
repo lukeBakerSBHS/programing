@@ -13,6 +13,7 @@
             document.addEventListener('keydown', keyPressed);
             document.addEventListener('keyup', keyReleased);
             
+            
 
             setInterval(mainloop, 1000 / 50);
 
@@ -24,11 +25,13 @@
         var playerXspeed = 5;
         var playerYspeed = 5;
         
-        var enemy1Xpos = 1;
-        var enemy1Ypos = 1;
-        const ENEMY1_SIZE = 20;
-        var enemy1Xspeed= 5;
-        var enemy1Yspeed= 5;
+//        var enemy1Xpos = 1;
+//        var enemy1Ypos = 1;
+//        const ENEMY1_SIZE = 20;
+//        var enemy1Xspeed= 5;
+//        var enemy1Yspeed= 5;
+//        
+        var enemies =[];
 
         const LEFT_KEY = 65;
         const RIGHT_KEY = 68;
@@ -36,13 +39,22 @@
         var leftkeyPressed = false;
         var rightkeyPressed = false;
         
-        
+        var startingPos = true;
+        var totalEnemies = 8;
 
         function mainloop() { //mainloop were you want stuff on screen.
 
-            colorRect(0, 0, canvas.width, canvas.height, 'black'); // background that youll be palying on
+            colorRect(0,0,canvas.width, canvas.height, 'black'); // background that youll be palying on
+            
+            if(startingPos){
+                for(var i = 0; i < totalEnemies; i++){
+                    makeEnemy();
+                }
+                startingPos = false;
+            }
 
             colorRect(playerXpos, playerYpos, PlAYER_SIZE, PlAYER_SIZE, 'red'); //the charcter youll be playing in the game
+//            colorRect(enemy1Xpos, enemy1Ypos, PlAYER_SIZE, ENEMY1_SIZE, 'blue'); //the charcter youll be playing in the game
 
             if (startingPos) {
                 startPos();
@@ -50,6 +62,7 @@
                 startingPos = false;
             }
             playerMove();
+            drawEnemies();
         } // end func
 
         function keyPressed(evt) {
@@ -71,9 +84,7 @@
             }
         } //end func
         
-        function enemy = {
             
-        }
 
         function playerMove() {//player 
             if (rightkeyPressed) { // rightkeypressed 
@@ -84,6 +95,38 @@
             }
 
         } // end func
+        
+        var enemycounter = 0;
+        
+        function makeEnemy(){
+            //var enemyPos = Math.floor(Math.random()*7) + 1;
+            const ENEMY_SIZE = 20;
+            const gap = 10;
+            var enemyXpos = enemycounter * ENEMY_SIZE + gap;
+            var enemyYpos = 0;
+            var enemyXspeed = Math.floor(Math.random()*(10 - 3)) + 3;
+            var enemyYspeed = Math.floor(Math.random()*(5 - 2)) + 2;
+            
+            enemycounter++;
+            
+            var enemy = {
+                enemyXpos: enemyXpos,
+                enemyYpos: enemyYpos,
+                ENEMY_SIZE: ENEMY_SIZE,
+                enemyXspeed: enemyXspeed,
+                enemyYspeed: enemyYspeed
+            }
+             
+            
+            enemies.push(enemy);
+        }
+            
+         function drawEnemies(){
+             enemies.forEach(function(enemy,i,array){
+                 colorRect(enemy.enemyXpos,enemy.enemyYpos,enemy.ENEMY_SIZE,enemy.ENEMY_SIZE,'red');
+             });
+         }   
+  
 
 
         function startPos() {
